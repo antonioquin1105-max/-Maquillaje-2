@@ -13,14 +13,24 @@
             color: #333;
         }
 
-        /* ENCABEZADO */
+        /* ENCABEZADO CON LOGO */
         header {
             background: #ff77b7;
-            padding: 15px;
-            text-align: center;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             color: white;
             font-size: 22px;
             font-weight: bold;
+        }
+
+        header img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
         }
 
         /* MENÚ */
@@ -58,6 +68,12 @@
             font-weight: bold;
             padding: 20px;
             text-align: center;
+            animation: fadeIn 1.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
         }
 
         /* SECCIÓN */
@@ -75,25 +91,70 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
+            padding: 10px;
         }
 
         .product-card {
+            position: relative;
             background: white;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
         }
 
         .product-card img {
             width: 100%;
-            border-radius: 10px;
-            height: 150px;
+            height: 170px;
             object-fit: cover;
+            transition: 0.4s ease;
         }
 
-        .product-card h3 {
-            margin: 10px 0 5px;
+        /* ANIMACIÓN: CAPA OSCURA + INFO */
+        .info-hover {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: 0.4s ease;
+            padding: 10px;
+        }
+
+        .info-hover h3,
+        .info-hover p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+
+        /* Hover PC */
+        .product-card:hover img {
+            transform: scale(1.15);
+            filter: brightness(60%);
+        }
+
+        .product-card:hover .info-hover {
+            opacity: 1;
+        }
+
+        /* Teléfonos */
+        .product-card.active img {
+            transform: scale(1.15);
+            filter: brightness(60%);
+        }
+
+        .product-card.active .info-hover {
+            opacity: 1;
         }
 
         /* FOOTER */
@@ -105,10 +166,17 @@
             margin-top: 30px;
         }
 
-        /* RESPONSIVE EXTRAS */
+        footer a {
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
         @media(max-width: 600px) {
             header { font-size: 20px; }
             .banner { font-size: 22px; height: 180px; }
+            header img { height: 40px; width: 40px; }
         }
     </style>
 
@@ -116,11 +184,12 @@
 <body>
 
     <header>
+        <img src="https://i.pinimg.com/736x/8a/6a/ed/8a6aed04357a798edc2cc74e07bcb35b.jpg" alt="Logo">
         alob_makeup
     </header>
 
     <nav>
-        <a href="..//trabajo de alex/Index.html">Inicio</a>
+        <a href="../trabajo de alex/Index.html">Inicio</a>
     </nav>
 
     <div class="banner">
@@ -131,37 +200,75 @@
         <h2>✨ Productos Destacados</h2>
 
         <div class="products">
+
             <div class="product-card">
-                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Lapiz%20de%20Labios.jpeg?raw=true" alt="Labial">
-                <h3>Lapiz de Labios</h3>
+                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Lapiz%20de%20Labios.jpeg?raw=true">
+                <div class="info-hover">
+                    <h3>Lápiz de Labios</h3>
+                    <p>$1.00</p>
+                </div>
             </div>
 
             <div class="product-card">
-                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Base%20Miss.jpeg?raw=true" alt="Base">
-                <h3>Base Miss</h3>
+                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Base%20Miss.jpeg?raw=true">
+                <div class="info-hover">
+                    <h3>Base Miss</h3>
+                    <p>$3.00</p>
+                </div>
             </div>
 
             <div class="product-card">
-                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Correctores.jpeg?raw=true" alt="Correctores">
-                <h3>Correctores</h3>
-            </div>
-
-              <div class="product-card">
-                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/B%C3%A1lsamos%20labiales.jpeg?raw=true" alt="Bálsamos labiales ">
-                <h3>Bálsamos labiales </h3>
+                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Correctores.jpeg?raw=true">
+                <div class="info-hover">
+                    <h3>Correctores</h3>
+                    <p>$3.00</p>
+                </div>
             </div>
 
             <div class="product-card">
-                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Robures%20en%20Barra.jpeg?raw=true" alt=" Robures en Barra">
-                <h3>Rubores en barra </h3>
+                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/B%C3%A1lsamos%20labiales.jpeg?raw=true">
+                <div class="info-hover">
+                    <h3>Labiales Mate en Barra</h3>
+                    <p>$3.75</p>
+                </div>
             </div>
-       </div>
-            
+
+            <div class="product-card">
+                <img src="https://github.com/antonioquin1105-max/-Maquillaje-2/blob/main/Robures%20en%20Barra.jpeg?raw=true">
+                <div class="info-hover">
+                    <h3>Rubores Liquidos</h3>
+                    <p>$3.00</p>
+                </div>
+            </div>
+
+        </div>
+
     </section>
-      
+
     <footer id="contacto">
-        📩 Contacto: alexbaires6@gmail.com | Instagram: @alob_makeup
+        📩 Contacto: alexbaires6@gmail.com | Instagram:
+        <a href="https://www.instagram.com/alob_makeup" target="_blank">@alob_makeup</a>
     </footer>
+
+    <!-- SCRIPT PARA ACTIVAR ANIMACIÓN EN TELÉFONOS -->
+    <script>
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (isTouch) {
+            const cards = document.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('active')) {
+                        card.classList.remove('active');
+                    } else {
+                        cards.forEach(c => c.classList.remove('active'));
+                        card.classList.add('active');
+                    }
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
